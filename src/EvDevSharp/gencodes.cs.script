@@ -1,0 +1,37 @@
+#!/usr/bin/csharp
+using System.IO;
+var t8 = new string(' ', 8);
+var t4 = new string(' ', 4);
+Func<string, string> StripComment = cs =>
+{
+    var idx = cs.IndexOf("/*");
+    if(idx==-1)
+        return cs;
+    else return cs.Substring(0, idx);
+};
+
+Func<string, bool, string> TransformDefine = (d, isEnum) =>
+{
+  var p = d.Split(new []{'\t', ' '}, 3, StringSplitOptions.RemoveEmptyEntries);
+  return t8 + (isEnum ? "": "public const int ") + p[1]+" = "+StripComment(p[2]).TrimEnd() + (isEnum ? "," : ";");
+};
+
+Func<string, string[], IEnumerable<string>> Filter = (file, filters) => File.ReadAllLines(file).Where(l => filters.Any(filter => l.StartsWith("#define "+ filter)));
+
+Action<string, string, string[]> GenEnum = (f, name, prefixes)=>
+{
+     Console.WriteLine(t4 + "public enum " + name);
+     Console.WriteLine(t4 + "{");
+     foreach(var l in Filter(f, prefixes)) Console.WriteLine(TransformDefine(l, true));
+     Console.WriteLine(t4 + "}");
+}
+Console.WriteLine("// To regenerate this file run './gencodes.cs.script >Codes.generated.cs' on a Linux system");
+Console.WriteLine("namespace EvDevSharp");
+Console.WriteLine("{");
+GenEnum("/usr/include/linux/input-event-codes.h", "EvDevEventType", new[]{"EV_"});
+GenEnum("/usr/include/linux/input-event-codes.h", "EvDevSynEvent", new[]{"SYN_"});
+GenEnum("/usr/include/linux/input-event-codes.h", "EvDevKey", new[]{"KEY_", "BTN_"});
+GenEnum("/usr/include/linux/input-event-codes.h", "EvDevRelativeAxis", new[]{"REL_"});
+GenEnum("/usr/include/linux/input-event-codes.h", "EvDevAbsoluteAxis", new[]{"ABS_"});
+GenEnum("/usr/include/linux/input-event-codes.h", "EvDevProperties", new[]{"INPUT_PROP_"});
+Console.WriteLine("}");
