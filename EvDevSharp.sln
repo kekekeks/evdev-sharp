@@ -2,8 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvDevSharp", "src\EvDevSharp\EvDevSharp.csproj", "{A6CE288D-DE91-4433-BB3F-2C7FC4FD793F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvTest", "src\EvTest\EvTest.csproj", "{6E45B495-54FB-4D2F-A171-D42A385F97DD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
