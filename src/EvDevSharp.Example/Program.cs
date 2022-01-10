@@ -25,7 +25,7 @@ bool inputOk = false;
 int key;
 do
 {
-    Console.Write($"Select a device [0-{devices.Count}]: ");
+    Console.Write($"Select a device [0-{devices.Count - 1}]: ");
     inputOk = int.TryParse(Console.ReadLine(), out key);
 } while (!inputOk || key < 0 || key >= devices.Count);
 
