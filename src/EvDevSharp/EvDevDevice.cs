@@ -194,7 +194,7 @@ public unsafe sealed partial class EvDevDevice : IDisposable
     /// <exception cref="System.ComponentModel.Win32Exception"></exception>
     public static IEnumerable<EvDevDevice> GetDevices()
     {
-        if (!RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || !RuntimeInformation.IsOSPlatform(OSPlatform.FreeBSD))
+        if (!RuntimeInformation.IsOSPlatform(OSPlatform.Linux) && !RuntimeInformation.IsOSPlatform(OSPlatform.FreeBSD))
             throw new PlatformNotSupportedException();
 
         return Directory.GetFiles(InputPath, InputPathSearchPattern)
