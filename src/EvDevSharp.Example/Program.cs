@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using EvDevSharp;
+﻿using EvDevSharp;
 using EvDevSharp.Example;
 
 if (UnixEnvironment.GetEffectiveUserId() != UnixEnvironment.RootUserId)
