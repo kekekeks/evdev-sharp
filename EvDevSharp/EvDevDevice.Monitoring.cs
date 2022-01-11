@@ -5,6 +5,7 @@ namespace EvDevSharp;
 
 public unsafe sealed partial class EvDevDevice : IDisposable
 {
+    private Task? monitoringTask;
     private CancellationTokenSource? cts;
 
     /// <summary>
@@ -16,7 +17,7 @@ public unsafe sealed partial class EvDevDevice : IDisposable
             return;
 
         cts = new();
-        Task.Run(Monitor);
+        monitoringTask = Task.Run(Monitor);
 
         void Monitor()
         {
@@ -93,15 +94,10 @@ public unsafe sealed partial class EvDevDevice : IDisposable
     public void StopMonitoring()
     {
         cts?.Cancel();
+        monitoringTask?.Wait();
     }
 
-    public void Dispose()
-    {
-        cts?.Cancel();
-    }
+    public void Dispose() => StopMonitoring();
 
-    ~EvDevDevice()
-    {
-        cts?.Cancel();
-    }
+    ~EvDevDevice() => StopMonitoring();
 }
