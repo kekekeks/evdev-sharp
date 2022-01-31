@@ -14,7 +14,7 @@ This class does not have a public constructor and in order to obtain device obje
 This method will enumerate each `/dev/input/event*` file and creates an object for each one.
 
 Each `EvDevDevice` instance contains properties such as device's buttons and axises. It also provides events that you can subscribe to.
-In order to get events you must call the `StartMonitoring()` method on the instance. This method will constantly read the device's evdev file and will raise events accordingly.
+In order to get events you must call the `StartMonitoring()` method on the instance. This method will constantly read the device's evdev file on a separate thread and will raise events accordingly.
 
 ### Examples
 The following code will list every evdev device on the system:
