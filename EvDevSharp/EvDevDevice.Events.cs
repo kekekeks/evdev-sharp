@@ -22,9 +22,9 @@ public unsafe sealed partial class EvDevDevice : IDisposable
     ///<summary>This event corresponds to evdev EV_MSC event type.</summary>
     public event OnMiscellaneousEventHandler? OnMiscellaneousEvent;
 
-    public delegate void OnSwithEventHandler(object sender, EvDevEventArgs e);
+    public delegate void OnSwitchEventHandler(object sender, EvDevEventArgs e);
     ///<summary>This event corresponds to evdev EV_SW event type.</summary>
-    public event OnSwithEventHandler? OnSwithEvent;
+    public event OnSwitchEventHandler? OnSwitchEvent;
 
     public delegate void OnLedEventHandler(object sender, EvDevEventArgs e);
     ///<summary>This event corresponds to evdev EV_LED event type.</summary>

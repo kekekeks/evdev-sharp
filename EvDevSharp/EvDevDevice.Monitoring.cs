@@ -55,7 +55,7 @@ public unsafe sealed partial class EvDevDevice : IDisposable
                         break;
 
                     case EvDevEventType.EV_SW:
-                        OnSwithEvent?.Invoke(this, new EvDevEventArgs(inputEvent.code, inputEvent.value));
+                        OnSwitchEvent?.Invoke(this, new EvDevEventArgs(inputEvent.code, inputEvent.value));
                         break;
 
                     case EvDevEventType.EV_LED:
