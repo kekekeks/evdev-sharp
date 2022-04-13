@@ -19,7 +19,7 @@ In order to get events you must call the `StartMonitoring()` method on the insta
 ### Examples
 The following code will list every evdev device on the system:
 
-```
+``` csharp
 var devices = EvDevDevice.GetDevices().OrderBy(d => d.DevicePath).ToList();
 
 for (int i = 0; i < devices.Count; i++)
@@ -30,7 +30,7 @@ for (int i = 0; i < devices.Count; i++)
 
 The following code will get the first gamepad (joystick) on the system and will subscribe to its key events:
 
-```
+``` csharp
 var gamepad = EvDevDevice.GetDevices()
     .First(d => d.GuessedDeviceType == EvDevGuessedDeviceType.GamePad);
 
