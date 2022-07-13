@@ -16,8 +16,8 @@ public unsafe sealed partial class EvDevDevice : IDisposable
     private static extern int ioctl(IntPtr fd, CULong request, [Out] byte[] data);
 
 
-    private const string InputPath = "/dev/input/";
-    private const string InputPathSearchPattern = "event*";
+    private const string InputPath = "/dev/input/by-path/";
+    private const string InputPathSearchPattern = "*";
 
 
     public EvDevDeviceId Id { get; }
