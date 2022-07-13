@@ -1,6 +1,10 @@
 # evdev-sharp
 A library for consuming evdev-capable devices
 
+# Important Note:
+The most up to date build for this package is available on [Nuget](https://www.nuget.org/packages/EvDevSharp/)
+The Nuget build only supports Linux ARM32
+
 ## What is evdev?
 From Linux kernel docs:
 
